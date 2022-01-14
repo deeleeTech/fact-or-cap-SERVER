@@ -1,0 +1,44 @@
+var express = require('express');
+var MongoClient = require('mongodb').MongoClient
+var router = express.Router();
+
+const connectionString = `mongodb+srv://deelee12:fuckXbox225@cluster0.kowrt.mongodb.net/FactOrCap?retryWrites=true&w=majority`;
+
+
+/* GET users listing. */
+router.get('/login', async function(req, res, next) {
+  MongoClient.connect(connectionString, (err, client) => {
+    if (err) return console.error(err)
+    //      console.log('Connected to Database');
+    //      console.log('Displaying Request Info:');
+    //      console.log(req.query); //QUERY FROM FRONT END
+    //      console.log('Now Searching for Users');
+    let clientUsername = req.query.usernameAttempt;
+    let clientPassword = req.query.passwordAttempt;
+    const db = client.db('FactOrCap');
+    db.collection('Users').find({ username: clientUsername }).toArray() //MONGO QUERY!!!
+    .then(results => {
+      //console.log(results) // MONGO RESULTS
+      if(results.length > 0){ // USER FOUND
+        //console.log(results[0]) 
+        let mongoPassword = results[0].password;
+        if(mongoPassword == clientPassword){ // SUCCESSFUL CREDS
+          let loginInfo = results[0];
+          delete loginInfo.password; //REMOVE PASSWORD DATA BEFORE PASSING TO CLIENT
+          res.send({ message: 'successful_login', loginData: loginInfo })
+        }
+        else{ // USER NOT FOUND
+          res.send({ message: 'incorrect_password', loginData: {} })
+        }
+      }
+      else{ //USERNAME NOT FOUND
+        res.send({ message: 'incorrect_username', loginData: {} })
+      }
+    })
+    .catch(error => {
+      console.error(error)
+    })
+  })
+});
+
+module.exports = router;
