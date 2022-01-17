@@ -1,0 +1,29 @@
+var express = require('express');
+var MongoClient = require('mongodb').MongoClient
+var router = express.Router();
+
+const connectionString = `mongodb+srv://deelee12:fuckXbox225@cluster0.kowrt.mongodb.net/FactOrCap?retryWrites=true&w=majority`;
+
+/* GET ALL BETS */
+router.get('/allBets', async function(req, res, next) {
+    MongoClient.connect(connectionString, (err, client) => {
+      if (err) return console.error(err)
+      const db = client.db('FactOrCap');
+      db.collection('SingleGameBets').find().toArray() //MONGO QUERY!!!
+      .then(results => {
+        //console.log(results) // MONGO RESULTS
+        if(results.length > 0){ // USER FOUND
+          //console.log(results[0])
+          res.send({ message: 'no_bets_found', betData: results })
+        }
+        else{ //USERNAME NOT FOUND
+          res.send({ message: 'no_bets_found', betData: {} })
+        }
+      })
+      .catch(error => {
+        console.error(error)
+      })
+    })
+  });
+
+module.exports = router;
