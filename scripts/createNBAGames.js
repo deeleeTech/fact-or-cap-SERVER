@@ -9,7 +9,7 @@ const homeID = 10;
 const gameDate = "01-18-22";
 const gameTime = "21:00";
 // ++++++++++++++++++++++++++++++++++
-//!! MONGO OBJECT HERE !!!!!!!!!!!!!!
+//!! MONGO OBJECT !!!!!!!!!!!!!!!!!!!!
 const newGameEntry = {
   gameID : gmID,
   homeTeamID: homeID,
