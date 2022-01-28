@@ -4,8 +4,10 @@ var router = express.Router();
 var NBAteams = require('./teamData/NBAteams');
 var NFLteams = require('./teamData/NFLteams');
 
+const username = '';
+const mongoPass = '';
 
-const connectionString = `mongodb+srv://deelee12:fuckXbox225@cluster0.kowrt.mongodb.net/FactOrCap?retryWrites=true&w=majority`;
+const connectionString = `mongodb+srv://${username}:${mongoPass}@cluster0.kowrt.mongodb.net/FactOrCap?retryWrites=true&w=majority`;
 
 
 /* GET NBA TEAMS  */

@@ -5,8 +5,12 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 var mongoose = require("mongoose");
+
+const username = '';
+const mongoPass = '';
+
 mongoose.connect(
-  `mongodb+srv://deelee12:fuckXbox225@cluster0.kowrt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, 
+  `mongodb+srv://${username}:${mongoPass}@cluster0.kowrt.mongodb.net/FactOrCap?retryWrites=true&w=majority`, 
   {
     useNewUrlParser: true,
     useUnifiedTopology: true

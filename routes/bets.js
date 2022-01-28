@@ -2,7 +2,10 @@ var express = require('express');
 var MongoClient = require('mongodb').MongoClient
 var router = express.Router();
 
-const connectionString = `mongodb+srv://deelee12:fuckXbox225@cluster0.kowrt.mongodb.net/FactOrCap?retryWrites=true&w=majority`;
+const username = '';
+const mongoPass = '';
+
+const connectionString = `mongodb+srv://${username}:${mongoPass}@cluster0.kowrt.mongodb.net/FactOrCap?retryWrites=true&w=majority`;
 
 /* GET ALL BETS */
 router.get('/allBets', async function(req, res, next) {
