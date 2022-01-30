@@ -3,7 +3,7 @@ var MongoClient = require('mongodb').MongoClient
 var router = express.Router();
 
 const username = '';
-const mongoPass = '';
+const mongoPass = ''
 
 const connectionString = `mongodb+srv://${username}:${mongoPass}@cluster0.kowrt.mongodb.net/FactOrCap?retryWrites=true&w=majority`;
 

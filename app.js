@@ -7,7 +7,7 @@ var cors = require('cors');
 var mongoose = require("mongoose");
 
 const username = '';
-const mongoPass = '';
+const mongoPass = ''; 
 
 mongoose.connect(
   `mongodb+srv://${username}:${mongoPass}@cluster0.kowrt.mongodb.net/FactOrCap?retryWrites=true&w=majority`, 

@@ -5,7 +5,7 @@ var NBAteams = require('./teamData/NBAteams');
 var NFLteams = require('./teamData/NFLteams');
 
 const username = '';
-const mongoPass = '';
+const mongoPass = ''
 
 const connectionString = `mongodb+srv://${username}:${mongoPass}@cluster0.kowrt.mongodb.net/FactOrCap?retryWrites=true&w=majority`;
 

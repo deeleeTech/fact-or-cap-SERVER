@@ -3,10 +3,10 @@ var allNFLteams = require('../routes/teamData/NFLteams')
 
 const connectionString = `mongodb+srv://deelee12:fuckXbox225@cluster0.kowrt.mongodb.net/FactOrCap?retryWrites=true&w=majority`;
 // ++++++++++++++++++++++++++++++++++
-const gmID = 'NFL004';
-const awayID = 4;
-const homeID = 16;
-const gameDate = "01-23-22";
+const gmID = 'NFL005';
+const awayID = 28;
+const homeID = 17;
+const gameDate = "01-30-22";
 const gameTime = "17:30";
 // ++++++++++++++++++++++++++++++++++
 //!! MONGO OBJECT !!!!!!!!!!!!!!!!!!!!
