@@ -17,7 +17,7 @@ router.get('/allBets', async function(req, res, next) {
         //console.log(results) // MONGO RESULTS
         if(results.length > 0){ // USER FOUND
           //console.log(results[0])
-          res.send({ message: 'no_bets_found', betData: results })
+          res.send({ message: 'bets_found', betData: results })
         }
         else{ //USERNAME NOT FOUND
           res.send({ message: 'no_bets_found', betData: {} })
