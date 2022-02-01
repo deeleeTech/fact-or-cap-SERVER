@@ -3,11 +3,9 @@ var MongoClient = require('mongodb').MongoClient
 var router = express.Router();
 var NBAteams = require('./teamData/NBAteams');
 var NFLteams = require('./teamData/NFLteams');
+require('dotenv').config();
 
-const username = '';
-const mongoPass = ''
-
-const connectionString = `mongodb+srv://${username}:${mongoPass}@cluster0.kowrt.mongodb.net/FactOrCap?retryWrites=true&w=majority`;
+const connectionString = process.env.MONGO_STRING;
 
 
 /* GET NBA TEAMS  */

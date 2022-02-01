@@ -5,12 +5,12 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 var mongoose = require("mongoose");
+require('dotenv').config();
 
-const username = '';
-const mongoPass = ''; 
+const connectionString = process.env.MONGO_STRING;
 
 mongoose.connect(
-  `mongodb+srv://${username}:${mongoPass}@cluster0.kowrt.mongodb.net/FactOrCap?retryWrites=true&w=majority`, 
+  connectionString, 
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -22,6 +22,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var gamesRouter = require('./routes/games');
 var betsRouter = require('./routes/bets');
+var managerRouter = require('./routes/manager')
 
 var app = express();
 
@@ -40,6 +41,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/games', gamesRouter);
 app.use('/bets', betsRouter);
+app.use('/manager', managerRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

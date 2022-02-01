@@ -1,11 +1,9 @@
 var express = require('express');
 var MongoClient = require('mongodb').MongoClient
 var router = express.Router();
+require('dotenv').config();
 
-const username = '';
-const mongoPass = ''
-
-const connectionString = `mongodb+srv://${username}:${mongoPass}@cluster0.kowrt.mongodb.net/FactOrCap?retryWrites=true&w=majority`;
+const connectionString = process.env.MONGO_STRING;
 
 
 /* GET users listing. */
