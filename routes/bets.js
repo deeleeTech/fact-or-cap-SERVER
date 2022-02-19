@@ -32,11 +32,17 @@ router.post('/newGameBet', async function(req, res, next) {
   MongoClient.connect(connectionString, (err, client) => {
     if (err) return console.error(err)
     //console.log(req.body);
-    const newEntryStager = req.body;
+    const newEntryStager = req.body.betData;
+    const userAccount = req.body.userAccount;
+    const updatedCoins = req.body.newCapCoins
     const db = client.db('FactOrCap');
     db.collection('SingleGameBets').insertOne(newEntryStager) //MONGO QUERY!!!
     .then(()=>{
-      res.send({ message: 'created_new_post' })
+      db.collection('Users').updateOne({ username: userAccount },{ $set: { "capCoins" : updatedCoins } }) //FINDS USER TO UPDATE COINS
+      .then(()=>{
+        res.send({ message: 'created_new_post' })
+      })
+      
     }).catch(()=>{
       res.send({ message: 'failed_to_create_post' })
     })
