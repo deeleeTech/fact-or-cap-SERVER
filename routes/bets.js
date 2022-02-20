@@ -1,5 +1,6 @@
 var express = require('express');
 var MongoClient = require('mongodb').MongoClient
+var ObjectID = require('mongodb').ObjectID;
 var router = express.Router();
 require('dotenv').config();
 
@@ -48,5 +49,25 @@ router.post('/newGameBet', async function(req, res, next) {
     })
   })
 });
+
+  /* USER ACCEPTS GAME BET */
+  router.post('/acceptGameBet', async function(req, res, next) {
+    MongoClient.connect(connectionString, (err, client) => {
+      if (err) return console.error(err)
+      console.log(req.body);
+      const betQueryID = req.body.betID;
+      const userAccepted = req.body.acceptingUser;
+      const updatedCoins = req.body.newCapCoins;
+      const db = client.db('FactOrCap');
+      db.collection('SingleGameBets').updateOne({ '_id': ObjectID(betQueryID) },{ $set: { "usernameAccepted" : userAccepted }}) //FINDS USER TO UPDATE COINS
+      .then((e)=>{
+        console.log(e)
+        res.send({ message: 'user_accepted_post' })
+      })
+      .catch(()=>{
+        res.send({ message: 'failed_to_accept_post' })
+      })
+    })
+  });
 
 module.exports = router;
